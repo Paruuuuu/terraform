@@ -18,13 +18,20 @@ data "aws_ami" "keyname" {
     values = [ "x86_64" ]
   }
 }
-data "aws_subnet" "myname" {
-  id = "subnet-038882ff6fdde2ae0"
+data "aws_security_group" "myname" {
+  filter {
+    name = "tag:Name"
+    values = ["my-security-group"]
 
+  }  
   
 }
+data "aws_subnet" "myname" {
+  filter {
+    name = "tag:Name"
+    values = ["subnet"]
 
-data "aws_security_group" "myname" {
-  id = "sg-0843d557fbb6ad4ff"
+
+  }
   
 }
